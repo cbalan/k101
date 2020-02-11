@@ -11,7 +11,7 @@ At any moment during the workshop, please interrupt the presenter if you have an
  * Pizza and Beer
 
 
-# Workstation setup
+## Workstation setup
 All samples assume that the student already has access to a kubernetes cluster. 
 
 To keep things simple, the following **Katacoda** playground can be used: 
