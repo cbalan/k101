@@ -24,3 +24,11 @@ Alternatively, the following tools can be used:
  * Docker: https://www.docker.com
  * Kind-0.7.0: https://kind.sigs.k8s.io/docs/user/quick-start
  * Kubectl-1.17.0: https://kubernetes.io/docs/tasks/tools/install-kubectl
+
+## Resources
+- https://kubernetes.io/docs/tutorials/
+- https://www.katacoda.com/courses/kubernetes
+- https://www.oreilly.com/library/view/kubernetes-up-and/9781491935668/
+- https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/
+- https://www.manning.com/books/kubernetes-in-action
+- https://github.com/kelseyhightower/kubernetes-the-hard-way
