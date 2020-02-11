@@ -1,3 +1,29 @@
+# Kubernetes overview
+Production-Grade Container Scheduling and Management
+
+https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+
+Kubernetes features 
+ - Service discovery and load balancing
+ - Automated rollouts and rollbacks
+ - Automatic bin packing
+ - Self-healing
+ - Secret and configuration management
+ - Storage orchestration
+
+
+
+
+   - something that sits in front of IAAS ->  
+   - input: manifests
+   - output: workloads 
+
+
+## What is Kubernetes?
+Production-Grade Container Scheduling and Management
+ - https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+ - https://kubernetes.io/docs/concepts/overview/components/
+
 ## Kubernetes Basics
 
 All interactions in this workshop will be performed using the kubectl tool. 
