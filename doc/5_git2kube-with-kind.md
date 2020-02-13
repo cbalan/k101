@@ -17,7 +17,7 @@ To keep the number of dependencies to a minimum, we'll create a golang applicati
 Please note that Kubernetes apps are not limited to golang applications. 
 As long as an application can be packaged as a Docker container, it can be managed via Kubernetes.  
 
- 1. Create the application folder and initialize git repo
+ 1. Create the application folder and initialize git repo.
 ```shell script
 mkdir the-app
 cd the-app
@@ -53,18 +53,18 @@ func main() {
 }
 ```
 
- 3. Add sample data
+ 3. Add sample data.
 ```shell script
 echo 'Sample data' > data.txt
 ```
 
- 4. Commit application code
+ 4. Commit application code.
 ```shell script
 git add main.go data.txt    
 git commit -a -m "Added the application code"
 ```
 
- 5. Run the application 
+ 5. Run the application.
 ```shell script
 docker run -it --name run-the-app -p 31001:31001 -v $(pwd):/the-app -w /the-app  -d golang:1.13 go run main.go
 
@@ -90,7 +90,7 @@ WORKDIR /
 ENTRYPOINT ["/the-app"]
 ```
 
-2. Commit Dockerfile code
+2. Commit Dockerfile code.
 
 ```shell script
 git add Dockerfile    
@@ -102,7 +102,7 @@ git commit -a -m "Added Dockerfile"
 docker build . -t the-app:v1
 ```
  
-4. Load docker image into KIND in order to allow Kubernetes to use ir
+4. Load docker image into KIND in order to allow Kubernetes to use it.
 ```shell script
 kind load docker-image the-app:v1
 ```
@@ -110,13 +110,12 @@ kind load docker-image the-app:v1
 
 ## Kubernetes manifests
 
-1. Create the kubernetes manifests folder
+1. Create the kubernetes manifests folder.
 ```shell script
 mkdir kubernetes
 ```
 
-2. Create namespace manifest in `kubernetes/1_namespace.yaml`
-
+2. Create namespace manifest in `kubernetes/1_namespace.yaml`.
 ```yaml
 ---
 apiVersion: v1
@@ -125,7 +124,7 @@ metadata:
   name: the-app
 ```
       
-3. Create deployment manifest in `kubernetes/deployment.yaml`
+3. Create deployment manifest in `kubernetes/deployment.yaml`.
 ```yaml
 ---
 apiVersion: apps/v1
@@ -158,7 +157,7 @@ spec:
               port: 31001
 ```
 
-4. Create the service manifest in `kubernetes/service.yaml'
+4. Create the service manifest in `kubernetes/service.yaml`.
 ```yaml
     ---
     apiVersion: v1
@@ -177,7 +176,7 @@ spec:
         app: the-app
 ```
 
-5. Commit changes
+5. Commit changes.
 ```shell script
 git add kubernetes 
 git commit -a -m "Added kubernetes manifests"   
@@ -185,7 +184,7 @@ git commit -a -m "Added kubernetes manifests"
 
 
 ## Install the application in a Kubernetes cluster
-Apply application manifests aganist Kubernetes
+Apply application manifests aganist Kubernetes.
 ```shell script
 kubectl apply -f ./kubernetes
 
@@ -207,7 +206,7 @@ open http://127.0.0.1:31001/the-data
 
 
 ## Change the app
-Apply a change, build and push a new image and update the deployment image value
+Apply a change, build and push a new image and update the deployment image value.
 
 
  1. Change `main.go` to prefix the response with "the data" string.
@@ -238,52 +237,52 @@ func main() {
 }
 ```
 
- 2. Commit changes 
+ 2. Commit changes.
 ```
 git commit -a -m "Added response prefix"
 ```
 
- 3. Release version 2 of the-app app
+ 3. Release version 2 of the-app app.
 ```shell script
 docker build . -t the-app:v2
 kind load docker-image the-app:v2
 ```
 
- 4. Update the `kubernetes/deployment.yaml` manifest to point to the new version 
+ 4. Update the `kubernetes/deployment.yaml` manifest to point to the new version.
 ```yaml
-    ---
-    apiVersion: apps/v1
-    kind: Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: the-app
+  namespace: the-app
+spec:
+  selector:
+    matchLabels:
+      app: the-app
+  replicas: 2
+  template:
     metadata:
-      name: the-app
-      namespace: the-app
+      labels:
+        app: the-app
     spec:
-      selector:
-        matchLabels:
-          app: the-app
-      replicas: 2
-      template:
-        metadata:
-          labels:
-            app: the-app
-        spec:
-          containers:
-            - name: the-app
-              image: the-app:v2
-              ports:
-                - containerPort: 31001
-              livenessProbe:
-                httpGet:
-                  path: /the-data
-                  port: 31001
-              readinessProbe:
-                httpGet:
-                  path: /the-data
-                  port: 31001
+      containers:
+        - name: the-app
+          image: the-app:v2
+          ports:
+            - containerPort: 31001
+          livenessProbe:
+            httpGet:
+              path: /the-data
+              port: 31001
+          readinessProbe:
+            httpGet:
+              path: /the-data
+              port: 31001
 ```  
 
  5. Commit changes
-```
+```shell script
 git commit -a -m "Bumped the-app to version 2"
 ```
 
