@@ -124,4 +124,4 @@ deployment.apps "nginx-deployment" deleted
 ```
 
 ## Next topic 
-[Pods](2_pods.md).
+[Pods](2_pods.md)

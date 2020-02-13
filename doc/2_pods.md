@@ -125,4 +125,4 @@ pod "myapp-pod" deleted
 ```
 
 ## Next topic 
-[Deployments](3_deployments.md).
+[Deployments](3_deployments.md)
