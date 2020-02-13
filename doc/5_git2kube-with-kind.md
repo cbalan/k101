@@ -127,35 +127,35 @@ metadata:
       
 3. Create deployment manifest in `kubernetes/deployment.yaml`
 ```yaml
-    ---
-    apiVersion: apps/v1
-    kind: Deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: the-app
+  namespace: the-app
+spec:
+  selector:
+    matchLabels:
+      app: the-app
+  replicas: 2
+  template:
     metadata:
-      name: the-app
-      namespace: the-app
+      labels:
+        app: the-app
     spec:
-      selector:
-        matchLabels:
-          app: the-app
-      replicas: 2
-      template:
-        metadata:
-          labels:
-            app: the-app
-        spec:
-          containers:
-            - name: the-app
-              image: the-app:v1
-              ports:
-                - containerPort: 31001
-              livenessProbe:
-                httpGet:
-                  path: /the-data
-                  port: 31001
-              readinessProbe:
-                httpGet:
-                  path: /the-data
-                  port: 31001
+      containers:
+        - name: the-app
+          image: the-app:v1
+          ports:
+            - containerPort: 31001
+          livenessProbe:
+            httpGet:
+              path: /the-data
+              port: 31001
+          readinessProbe:
+            httpGet:
+              path: /the-data
+              port: 31001
 ```
 
 4. Create the service manifest in `kubernetes/service.yaml'
