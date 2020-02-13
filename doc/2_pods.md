@@ -12,7 +12,7 @@ to associate with it. Kubernetes will orchestrate a location for this pod to be 
 Follow the next steps to deploy your first pod!
 
 Example yaml:
- ```
+ ```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -123,6 +123,111 @@ master $ k delete pod myapp-pod
 pod "myapp-pod" deleted
 
 ```
+
+
+#Probes
+https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
+
+You can configure probes to better protect your pods from failure there are three main types of probes that 
+you can define that each serve a different purpose
+
+##Liveness probe
+As the name suggest this probe will check if you your pod is running and restart it if necessary
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: liveness
+  name: liveness-exec
+spec:
+  containers:
+  - name: liveness
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    - touch /tmp/healthy; sleep 30; rm -rf /tmp/healthy; sleep 600
+    livenessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+
+```
+
+The liveness probe will poll based on the defined periodSeconds and execute the check that you
+define. If the the check fails it will automatically restart the pod. Run the above command and in ~30
+seconds you will see that the pod has restarted.
+
+```
+kubectl apply -f resources/liveness_probe.yaml
+
+master $ watch kubectl get pods
+NAME            READY   STATUS    RESTARTS   AGE
+liveness-exec   1/1     Running   1          79s
+
+master $ kubectl describe pods/liveness-exec
+...
+  Warning  Unhealthy  12s (x6 over 97s)    kubelet, node01    Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+  Normal   Killing    12s (x2 over 87s)    kubelet, node01    Container liveness failed liveness probe, will be restarted
+```
+
+You can create liveness probes that will run against http endpoints for example
+
+```yaml
+livenessProbe:
+    httpGet:
+        path: /healthz
+        port: 8080
+        httpHeaders:
+        - name: Custom-Header
+          value: Awesome
+      initialDelaySeconds: 3
+      periodSeconds: 3
+```
+
+
+##Readiness probe
+
+A readiness probe can be used to set conditions that your probe needs to meet before being set to ready.
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    test: readiness
+  name: readiness-exec
+spec:
+  containers:
+  - name: readiness
+    image: k8s.gcr.io/busybox
+    args:
+    - /bin/sh
+    - -c
+    -  sleep 30; touch /tmp/healthy; sleep 600
+    readinessProbe:
+      exec:
+        command:
+        - cat
+        - /tmp/healthy
+      initialDelaySeconds: 5
+      periodSeconds: 5
+```
+
+```
+kubectl apply -f resources/readiness_probe.yaml
+
+master $ watch kubectl get pods
+NAME            READY   STATUS    RESTARTS   AGE
+readiness-exec   1/1     Running   0          79s
+```
+
+Once the file has been created it will be set to a ready state. This is useful when you are starting a pod that
+take a long time to initialise.
 
 ## Next topic 
 [Deployments](3_deployments.md)

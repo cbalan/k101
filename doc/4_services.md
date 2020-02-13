@@ -33,36 +33,84 @@ spec:
       targetPort: 9376
 ```
 
-We can create this service in the kuberenets cluster by running
+# DEMO!!
 
-```kubetcl apply -f my-service.yaml```
+Go to https://github.com/cbalan/k101/tree/master/resources/service-app
 
-We can get all services to see verify that it has been created
-```
-master $ kubectl get services
-    NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-    my-service   ClusterIP   10.100.246.73   <none>        80/TCP    9s
-```
+If you haven't already, create the deployment from the previous section
 
-Lets take a deeper look at my-service by running the following:
 ```
-master $ kubectl describe services/my-service
-    Name:              my-service
-    Namespace:         default
-    Labels:            <none>
-    Annotations:       kubectl.kubernetes.io/last-applied-configuration:
-                         {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"my-service","namespace":"default"},"spec":{"ports":[{"port":80,"p...
-    Selector:          app=MyApp
-    Type:              ClusterIP
-    IP:                10.100.246.73
-    Port:              <unset>  80/TCP
-    TargetPort:        9376/TCP
-    Endpoints:         <none>
-    Session Affinity:  None
-    Events:            <none>
+kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 ```
 
-Services can be defined as different Types. If you notice above, the type we created was of Type 'ClusterIp'. There are 4 service Types
+Lets create a service which can be used to access the NginX deployment
+
+```
+kubectl apply -f nodeport-service.yaml
+```
+
+So what happened?
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodeport-service
+spec:
+  selector:
+    app: nginx
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
+Look closely at the port mappings, this is the important piece regarding a NodePort service
+```
+kubectl get services
+```
+
+Let's view the exposed service in Katacoda
+
+We can also see that the service is exposed on the Node itself
+
+```
+curl 127.0.0.1:NODEPORT
+```
+
+
+Lets look at a different type of service - A ClusterIP service
+
+
+We can create this kind of service in the kuberenets cluster by running
+
+```kubetcl apply -f clusterip-service.yaml```
+
+Again, what have we done?
+
+Lets list the services to show the difference between NodePort & ClusterIP
+
+```
+kubectl get services
+```
+
+Notice how the Port is not exposed externally, it just simply shows the port that container listens on for requests. The important piece here is that,
+**only pods within the cluster can access this service**. Lets show this
+
+```
+kubectl exec -it exec-pod sh
+```
+
+Inside this pod, we can talk to the ClusterIP service
+
+```
+wget my-clusterip-service
+ls
+```
+
+
+There are 4 types of Services in Kubernetes. They are
 - ClusterIp
 - NodePort
 - LoadBalancer
@@ -78,8 +126,37 @@ NodePort
 - Exposes a service from **outside** the kubernetes cluster. For example, from your local machine, if there was connectivity, you could send requests to this
 kind of service.
 
+LoadBalancer
+- Used to expose a service through a cloud provider's Load Balancer. Traffic from the external load balancer is directed at the backend Pods. Used within cloud providers
+like GCP, Azure & AWS
+
+ExternalName
+- Used to map a service to a DNS name. Lets take a quick example
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-externalname-service
+spec:
+  type: ExternalName
+  externalName: google.com
+```
 
 
+```
+kubectl apply my-externalname-service.yaml
+```
+
+Let's login into a Pod to show this
+
+```
+kubectl exec -it exec-pod sh
+
+#install curl
+apk add curl
+curl my-externalname-service
+```
 
 ## Next topic 
 [From Git to Kubernetes exercise](5_git2kube.md)
