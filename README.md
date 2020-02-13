@@ -39,6 +39,27 @@ Some of these may or may not be obvious:
  * **kube control**, **kube C T L**, **"kube cuddle"** - reference to **kubectl** command line
  * **SIG** - Special Interest Group. Kubernetes SIG list available here: https://github.com/kubernetes/community/blob/master/sig-list.md
  
+## I'm done! What's next?
+Please refer to https://kubernetes.io/ for Kubernetes official documentation.
+
+Check out how other projects are being deployed on Kubernetes via helm charts. 
+https://github.com/helm/charts/tree/master/stable/
+
+Probably check out first what is helm at https://helm.sh/ 
+
+Check out https://landscape.cncf.io/
+
+Check out https://operatorhub.io/  
+
+Try Kubernetes managed solutions:
+ - GKE - https://cloud.google.com/kubernetes-engine/docs/quickstart
+ - EKS - https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+ - AKS - https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+ - https://www.digitalocean.com/resources/kubernetes/ 
+ - google for others :) 
+  
+Or build a Kubernetes cluster from scratch: https://github.com/kelseyhightower/kubernetes-the-hard-way
+
 
 ## Resources
 - https://12factor.net/
@@ -47,4 +68,3 @@ Some of these may or may not be obvious:
 - https://www.oreilly.com/library/view/kubernetes-up-and/9781491935668/
 - https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/
 - https://www.manning.com/books/kubernetes-in-action
-- https://github.com/kelseyhightower/kubernetes-the-hard-way
