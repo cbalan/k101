@@ -53,7 +53,7 @@ Check out https://landscape.cncf.io/
 
 Check out https://operatorhub.io/  
 
-Try Kubernetes managed solutions:
+Learn how to use managed Kubernetes powered by a cloud provider:
  - GKE - https://cloud.google.com/kubernetes-engine/docs/quickstart
  - EKS - https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
  - AKS - https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
