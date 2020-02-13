@@ -76,7 +76,7 @@ docker kill run-the-app
 ## Build and package
 We'll package our application and it's dependencies in a docker image.
 
-1. Create Dockerfile. Note that we are using multi-staged Docker file.
+1. Create Dockerfile. Note that we are using multi-staged Docker file. https://docs.docker.com/develop/develop-images/multistage-build/
 ```dockerfile
 FROM golang:1.13 as builder
 WORKDIR /the-app
