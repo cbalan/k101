@@ -7,5 +7,5 @@ metadata:
 spec:
   containers:
     - name: myapp-container
-      image: busybox
+      image: alpine
       command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']

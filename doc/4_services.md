@@ -99,7 +99,7 @@ Notice how the Port is not exposed externally, it just simply shows the port tha
 **only pods within the cluster can access this service**. Lets show this
 
 ```
-kubectl exec -it myapp-pod sh
+kubectl exec -it exec-pod sh
 ```
 
 Inside this pod, we can talk to the ClusterIP service
@@ -127,14 +127,32 @@ NodePort
 kind of service.
 
 LoadBalancer
-- TODO
+- Used to expose a service through a cloud provider's Load Balancer. Traffic from the external load balancer is directed at the backend Pods. Used within cloud providers
+like GCP, Azure & AWS
 
 ExternalName
-- 
+- Used to map a service to a DNS name. Lets take a quick example
 
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-externalname-service
+spec:
+  type: ExternalName
+  externalName: google.com
+```
 
+```
+kubectl apply my-externalname-service.yaml
+```
 
+Let's login into a Pod to show this
 
+```
+kubectl exec -it exec-pod sh
 
-
-
+#install curl
+apk add curl
+curl my-externalname-service
+```
