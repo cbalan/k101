@@ -21,9 +21,9 @@ spec:
             - containerPort: 31001
           livenessProbe:
             httpGet:
-              path: /the-app
+              path: /the-data
               port: 31001
           readinessProbe:
             httpGet:
-              path: /the-app
+              path: /the-data
               port: 31001
