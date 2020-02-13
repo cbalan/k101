@@ -38,7 +38,8 @@ Some of these may or may not be obvious:
  * **k8s**, **kube** - shortcuts, references to the **Kubernetes** project 
  * **kube control**, **kube C T L**, **"kube cuddle"** - reference to **kubectl** command line
  * **SIG** - Special Interest Group. Kubernetes SIG list available here: https://github.com/kubernetes/community/blob/master/sig-list.md
- 
+
+
 ## I'm done! What's next?
 Please refer to https://kubernetes.io/ for Kubernetes official documentation.
 
