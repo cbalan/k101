@@ -35,6 +35,7 @@ Alternatively, the following tools can be used:
 
 ## Terminology
 Some of these may or may not be obvious:
+ * **manifests** - All Kubernetes api objects are defined via YAML format
  * **k8s**, **kube** - shortcuts, references to the **Kubernetes** project 
  * **kube control**, **kube C T L**, **"kube cuddle"** - reference to **kubectl** command line
  * **SIG** - Special Interest Group. Kubernetes SIG list available here: https://github.com/kubernetes/community/blob/master/sig-list.md
