@@ -192,3 +192,6 @@ kubectl apply -f ./kubernetes
 Apply a change, build and push a new image and update the deployment image value
 
 TBA
+
+## Next topic
+We are done. Go to [index](../README.md) 

@@ -81,3 +81,5 @@ kind of service.
 
 
 
+## Next topic 
+[From Git to Kubernetes exercise](5_git2kube.md)

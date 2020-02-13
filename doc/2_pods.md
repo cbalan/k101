@@ -123,3 +123,6 @@ master $ k delete pod myapp-pod
 pod "myapp-pod" deleted
 
 ```
+
+## Next topic 
+[Deployments](3_deployments.md).
