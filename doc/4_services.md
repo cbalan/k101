@@ -119,8 +119,8 @@ kubectl exec -it exec-pod sh
 Inside this pod, we can talk to the ClusterIP service
 
 ```
-wget my-clusterip-service
-ls
+apk add curl
+curl my-clusterip-service:80
 ```
 
 
