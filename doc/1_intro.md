@@ -131,26 +131,34 @@ Let quickly compare yaml and json:
 ```yaml
 ---
 title: Hitchhiker's Guide to the Galaxy
-Author: Douglas Adams
-Books: 
-   - The Hitchhiker's Guide to the Galaxy
-   - The Restaurant at the End of the Universe
-   - Life, the Universe and Everything
-   - So Long, and Thanks for All the Fish
-   - Mostly Harmless
+author: Douglas Adams
+books: 
+  - The Hitchhiker's Guide to the Galaxy
+  - The Restaurant at the End of the Universe
+  - Life, the Universe and Everything
+  - So Long, and Thanks for All the Fish
+  - Mostly Harmless
+meaning:
+  of:
+    life: 42
 ```
 
 ```json
 {
   "title": "Hitchhiker's Guide to the Galaxy",
-  "Author": "Douglas Adams",
-  "Books": [
+  "author": "Douglas Adams",
+  "books": [
     "The Hitchhiker's Guide to the Galaxy",
     "The Restaurant at the End of the Universe",
     "Life, the Universe and Everything",
     "So Long, and Thanks for All the Fish",
     "Mostly Harmless"
-  ]
+  ],
+  "meaning": {
+    "of": {
+      "life": 42
+    }
+  }
 }
 ```
 
