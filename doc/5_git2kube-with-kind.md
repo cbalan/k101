@@ -159,21 +159,21 @@ spec:
 
 4. Create the service manifest in `kubernetes/service.yaml`.
 ```yaml
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: the-app
-      namespace: the-app
-    spec:
-      type: ClusterIP
-      ports:
-        - name: the-app
-          protocol: TCP
-          port: 31001
-          targetPort: 31001
-      selector:
-        app: the-app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: the-app
+  namespace: the-app
+spec:
+  type: ClusterIP
+  ports:
+    - name: the-app
+      protocol: TCP
+      port: 31001
+      targetPort: 31001
+  selector:
+    app: the-app
 ```
 
 5. Commit changes.
