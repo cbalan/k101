@@ -33,6 +33,19 @@ spec:
       targetPort: 9376
 ```
 
+What fo these fields mean exactly?
+
+### selector
+ - This is a label matcher, the service will find any pod with the label "app = MyApp" and act as the service for that pod
+### protocol
+- The network protocol to send requests over
+### port
+- This is the port to call the service on. So in this case, if you want to use "my-service" , you would send a request to ``my-service:80``
+### targetPort
+ - This is the port on which the application is running in a Pod
+
+![Kubernetes Service Diagram](images/kube-services-ports.jpeg?raw=true "Kubernetes Services")
+
 # DEMO!!
 
 Go to https://github.com/cbalan/k101/tree/master/resources/service-app
@@ -64,6 +77,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 32333
 ```
 
 Look closely at the port mappings, this is the important piece regarding a NodePort service
@@ -76,7 +90,7 @@ Let's view the exposed service in Katacoda
 We can also see that the service is exposed on the Node itself
 
 ```
-curl 127.0.0.1:NODEPORT
+curl 127.0.0.1:32333
 ```
 
 
@@ -99,14 +113,16 @@ Notice how the Port is not exposed externally, it just simply shows the port tha
 **only pods within the cluster can access this service**. Lets show this
 
 ```
+kubectl apply -f pod.yaml
 kubectl exec -it exec-pod sh
 ```
 
 Inside this pod, we can talk to the ClusterIP service
 
 ```
-wget my-clusterip-service
-ls
+apk add curl
+
+curl my-clusterip-service:80
 ```
 
 
@@ -153,8 +169,6 @@ Let's login into a Pod to show this
 ```
 kubectl exec -it exec-pod sh
 
-#install curl
-apk add curl
 curl my-externalname-service
 ```
 
