@@ -1,5 +1,7 @@
 # Deployments Overview
-A Deployment provides declarative updates for Pods and ReplicaSets.
+Deployments represent a set of multiple, identical Pods with no unique identities. 
+A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. 
+Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets.
 
 
 # Deployment Features
