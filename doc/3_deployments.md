@@ -15,7 +15,7 @@ You can define Deployments to create new ReplicaSets, or to remove existing Depl
 Deployment object encapsulates ReplicaSet and Pod objects
 ![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
 
-# Types of Deployment
+# Types of Deployment Update Strategies
 
 ## Recreate Strategy
 Shut down version A, then start version B. Best for development environment
