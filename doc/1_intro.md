@@ -123,5 +123,38 @@ master $ k delete -f resources/into.yaml
 deployment.apps "nginx-deployment" deleted
 ```
 
+## YAML
+Kubernetes uses [YAML](https://yaml.org/) files to define resources. Yaml is a serialization language 
+that is intended to be human readable. YAML uses 2 space indentation. 
+Let quickly compare yaml and json:
+
+```yaml
+---
+title: Hitchhiker's Guide to the Galaxy
+Author: Douglas Adams
+Books: 
+   - The Hitchhiker's Guide to the Galaxy
+   - The Restaurant at the End of the Universe
+   - Life, the Universe and Everything
+   - So Long, and Thanks for All the Fish
+   - Mostly Harmless
+```
+
+```json
+{
+  "title": "Hitchhiker's Guide to the Galaxy",
+  "Author": "Douglas Adams",
+  "Books": [
+    "The Hitchhiker's Guide to the Galaxy",
+    "The Restaurant at the End of the Universe",
+    "Life, the Universe and Everything",
+    "So Long, and Thanks for All the Fish",
+    "Mostly Harmless"
+  ]
+}
+```
+
+You will see a lot of YAML in the following pages
+
 ## Next topic 
 [Pods](2_pods.md)
