@@ -8,18 +8,24 @@ You can define Deployments to create new ReplicaSets, or to remove existing Depl
 
 # Types of Deployment
 
-Recreate - best for development environment
-Pro:
-application state entirely renewed
-Cons:
-downtime that depends on both shutdown and boot duration of the application
+## Recreate
+Best for development environment
 
-RollingUpdate
-This uses the RollingUpdate strategy provided by kubernetes.   
-Pro:
-No downtime
+Pros:
+ - application state entirely renewed
+ 
 Cons:
-Takes time
+ - downtime that depends on both shutdown and boot duration of the application
+
+## RollingUpdate
+This uses the RollingUpdate strategy provided by kubernetes.   
+
+Pros:
+- No downtime
+- Rollback functionality
+
+Cons:
+- Takes time
 
 
 Deployment object encapsulates ReplicaSet and Pod objects
@@ -65,10 +71,6 @@ Lets scale up the cluster, if not using a local Kube cluster please refrain from
 Lets take a look at our pods 
 
     kubectl get pods --all-namespaces
-    
-Lets scale the cluster back down, but this time edit the yaml
- 
-     kubectl edit deployments kubernetes-bootcamp
 
 Look for the number of replicas under the spec parent. Manually edit this to assign 2. Now save the file with :x or :wq 
 
@@ -103,9 +105,11 @@ If something has gone wrong in the update to the new docker image, we can undo t
     kubectl rollout undo  deployment.v1.apps/nginx-deployment 
   
 
-For the curious, Kubernetes Deployment controller code
+For the curious, Kubernetes Deployment controller code. This is used to manger the desired state
 https://github.com/kubernetes/kubernetes/blob/master/pkg/controller/deployment/deployment_controller.go
  
  
  
- 
+
+## Next topic 
+[Services](4_services.md)
