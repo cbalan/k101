@@ -4,6 +4,9 @@ For the next ~1h 30m we'll be looking at managing applications with [Kubernetes]
 This is a hands-on type of workshop. No slides are available.
 
 Feel free to follow along as the presenter goes through the prepared content. 
+```shell script
+git clone git@github.com:cbalan/k101.git
+```
 
 At any moment during the workshop, if you have any questions, please interrupt the presenter. 
 
