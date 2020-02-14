@@ -10,12 +10,11 @@ To see the list of available nodes, the following **kubectl** command can be use
 ```shell script
 kubectl get nodes -o wide
 ```
-:q
 
 A private in-cluster docker registry is used in this example. 
 To install it, please execute the following on both nodes:
 
- 1. Add my.registry:31000 to the list of insecure registries. Point my.registry to localhost. 
+ 1. Add `my.registry:31000` to the list of insecure registries. Point `my.registry` to `localhost`. 
 ```shell script
 curl https://raw.githubusercontent.com/cbalan/k101/master/examples/katacoda-local-registry/configure-local-registry.sh | bash -ex
 
@@ -29,8 +28,10 @@ kubectl apply -f https://raw.githubusercontent.com/cbalan/k101/master/examples/k
 kubectl wait --for=condition=available deployment/my -n registry
 ``` 
 
+Unless specified otherwise, please use the `master` node to follow through the exercise.
+
 ## The application
-To keep the number of dependencies to a minimum, we'll create a golang application. 
+To keep the number of dependencies to a minimum, we'll create a [golang](https://golang.org/) application. 
 
 Please note that Kubernetes apps are not limited to golang applications. 
 As long as an application can be packaged as a Docker container, it can be managed via Kubernetes.  
@@ -120,9 +121,10 @@ git commit -a -m "Added Dockerfile"
 docker build . -t the-app:v1
 ```
  
-4. Load docker image into KIND in order to allow Kubernetes to use it.
+4. Publish the docker image into the private local registry.
 ```shell script
-kind load docker-image the-app:v1
+docker tag the-app:v1 my.registry:31000/the-app:v1
+docker push my.registry:31000/the-app:v1
 ```
 
 
@@ -162,7 +164,7 @@ spec:
     spec:
       containers:
         - name: the-app
-          image: the-app:v1
+          image: my.registry:31000/the-app:v1
           ports:
             - containerPort: 31001
           livenessProbe:
@@ -214,12 +216,6 @@ kubectl -n the-app describe service the-app
 
 # inspect app events
 kubectl -n the-app get events
-
-# port forward the-app service to localhost 
-kubectl -n the-app port-forward svc/the-app 31001:31001
-
-# open the application endpoint in a browser window
-open http://127.0.0.1:31001/the-data
 ```
 
 
@@ -263,7 +259,8 @@ git commit -a -m "Added response prefix"
  3. Release version 2 of the-app app.
 ```shell script
 docker build . -t the-app:v2
-kind load docker-image the-app:v2
+docker tag the-app:v2 my.registry:31000/the-app:v2
+docker push my.registry:31000/the-app:v2
 ```
 
  4. Update the `kubernetes/deployment.yaml` manifest to point to the new version.
@@ -286,7 +283,7 @@ spec:
     spec:
       containers:
         - name: the-app
-          image: the-app:v2
+          image: my.registry:31000/the-app:v2
           ports:
             - containerPort: 31001
           livenessProbe:
@@ -316,21 +313,6 @@ kubectl -n the-app describe service the-app
 
 # inspect app events
 kubectl -n the-app get events
-
-# port forward the-app service to localhost 
-kubectl -n the-app port-forward svc/the-app 31001:31001
-
-# open the application endpoint in a browser window
-open http://127.0.0.1:31001/the-data
-```
-
-## Clean up
-```shell script
-# delete app resources
-kubectl delete -f ./kubernetes
-
-# delete kind cluster
-kind delete cluster
 ```
 
 ## Next topic

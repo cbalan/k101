@@ -12,7 +12,7 @@ kind create cluster
 ```
 
 ## The application
-To keep the number of dependencies to a minimum, we'll create a golang application. 
+To keep the number of dependencies to a minimum, we'll create a [golang](https://golang.org/) application. 
 
 Please note that Kubernetes apps are not limited to golang applications. 
 As long as an application can be packaged as a Docker container, it can be managed via Kubernetes.  
