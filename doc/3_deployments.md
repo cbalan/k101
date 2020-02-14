@@ -5,11 +5,15 @@ A Deployment provides declarative updates for Pods and ReplicaSets.
 # Deployment Features
 You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. 
 You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.
+- Upgrade
+- Rollback
+- Scale up or Down
+- Pause and resume
 
 # Types of Deployment
 
-## Recreate
-Best for development environment
+## Recreate Strategy
+Shut down version A, then start version B. Best for development environment
 
 Pros:
  - application state entirely renewed
@@ -17,8 +21,8 @@ Pros:
 Cons:
  - downtime that depends on both shutdown and boot duration of the application
 
-## RollingUpdate
-This uses the RollingUpdate strategy provided by kubernetes.   
+## RollingUpdate Strategy
+This uses the RollingUpdate strategy provided by kubernetes. Default strategy.    
 
 Pros:
 - No downtime
@@ -29,7 +33,7 @@ Cons:
 
 
 Deployment object encapsulates ReplicaSet and Pod objects
-<insert image>
+![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
 
 Lets take a look at the deployment yaml file under the resources folder.
 The selector field defines how the Deployment finds which Pods to manage. In this case, you simply select a label that is defined in the Pod template
@@ -46,6 +50,8 @@ Now check if the deployment was applied
        
 Now we can take a look at the deployment yaml on the cluster
 
+    kubectl describe deployment nginx-deployment
+    
     kubectl edit deployments nginx-deployment
 
 Check the current running pods
