@@ -123,7 +123,5 @@ master $ k delete -f resources/into.yaml
 deployment.apps "nginx-deployment" deleted
 ```
 
-
-
-
-
+## Next topic 
+[Pods](2_pods.md)
