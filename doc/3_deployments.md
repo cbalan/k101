@@ -10,6 +10,9 @@ You can define Deployments to create new ReplicaSets, or to remove existing Depl
 - Scale up or Down
 - Pause and resume
 
+Deployment object encapsulates ReplicaSet and Pod objects
+![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
+
 # Types of Deployment
 
 ## Recreate Strategy
@@ -32,23 +35,18 @@ Cons:
 - Takes time
 
 
-Deployment object encapsulates ReplicaSet and Pod objects
-![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
-
-Lets take a look at the deployment yaml file under the resources folder.
-The selector field defines how the Deployment finds which Pods to manage. In this case, you simply select a label that is defined in the Pod template
-
-Lets create the deployment
+Lets create an nginx deployment. 
 
     kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 
 Now check if the deployment was applied
 
     kubectl get deployments
-    
+    or
     kubectl get deploy
        
-Now we can take a look at the deployment yaml on the cluster
+Now we can take a look at the deployment yaml on the cluster  The selector field defines how the Deployment finds which Pods to manage. 
+In this case, you simply select a label that is defined in the Pod template
 
     kubectl describe deployment nginx-deployment
     
@@ -94,7 +92,7 @@ Be quick!  lets check the status. The more replicas defined the longer the rollo
     kubectl rollout status deployment.v1.apps/nginx-deployment
 
 Okay lets break some stuff :0 
-Set a new nginx image to something random to try pull a docker image verion that does not exist 
+Set a new nginx image to something random to try pul    l a docker image verion that does not exist 
 
       kubectl set image deployment nginx-deployment nginx=nginx:1.9.10000000
 
