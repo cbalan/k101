@@ -112,6 +112,7 @@ Notice how the Port is not exposed externally, it just simply shows the port tha
 **only pods within the cluster can access this service**. Lets show this
 
 ```
+kubectl apply -f pod.yaml
 kubectl exec -it exec-pod sh
 ```
 
