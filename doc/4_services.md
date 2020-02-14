@@ -33,6 +33,15 @@ spec:
       targetPort: 9376
 ```
 
+What fo these fields mean exactly?
+
+selector -> This is a label matcher, the service will find any pod with the label "app = MyApp" and act as the service for that pod
+protocol -> The network protocol to send requests over
+port -> This is the port to call the service on. So in this case, if you want to use "my-service" , you would send a request to ``my-service:80``
+targetPort -> This is the port on which the application is running in a Pod
+
+![Kubernetes Service Diagram](images/kube-services-ports.jpeg?raw=true "Kubernetes Services")
+
 # DEMO!!
 
 Go to https://github.com/cbalan/k101/tree/master/resources/service-app
