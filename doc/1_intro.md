@@ -27,8 +27,8 @@ More details about each components can be found at https://kubernetes.io/docs/co
 Above is a basic diagram of some of the components that make up the platform. The master node is the brain of
 the platform. Users use the cli tool kubectl to interact with master node and it will provision your containers across
 the worker nodes. Each worker node is running an agent called kubelete which is interacting with the master node
-provision containers as necessary until the platform matches the state that you define. You will rarely ever
-interact with the worker nodes directly.
+provision containers as necessary until the platform matches the state that you define. Kubernetes is a 
+declarative API You will rarely ever interact with the worker nodes directly.
 
 If you are looking to understand how to create your own kubernetes cluster read
 Kelsey Hightower's [Kubernetes the hard way](https://github.com/kelseyhightower/kubernetes-the-hard-way)
@@ -125,8 +125,8 @@ deployment.apps "nginx-deployment" deleted
 
 ## YAML
 Kubernetes uses [YAML](https://yaml.org/) files to define resources. Yaml is a serialization language 
-that is intended to be human readable. YAML uses 2 space indentation. 
-Let quickly compare yaml and json:
+that is intended to be human readable. YAML uses 2 space indentation. YAML is a superset of JSON
+Let quickly compare YAML and JSON:
 
 ```yaml
 ---
