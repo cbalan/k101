@@ -77,6 +77,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 32333
 ```
 
 Look closely at the port mappings, this is the important piece regarding a NodePort service
@@ -89,7 +90,7 @@ Let's view the exposed service in Katacoda
 We can also see that the service is exposed on the Node itself
 
 ```
-curl 127.0.0.1:NODEPORT
+curl 127.0.0.1:32333
 ```
 
 
