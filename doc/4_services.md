@@ -143,6 +143,7 @@ spec:
   externalName: google.com
 ```
 
+
 ```
 kubectl apply my-externalname-service.yaml
 ```
@@ -156,3 +157,6 @@ kubectl exec -it exec-pod sh
 apk add curl
 curl my-externalname-service
 ```
+
+## Next topic 
+[From Git to Kubernetes exercise](5_git2kube.md)

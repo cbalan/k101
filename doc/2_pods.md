@@ -124,6 +124,7 @@ pod "myapp-pod" deleted
 
 ```
 
+
 #Probes
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
 
@@ -227,3 +228,6 @@ readiness-exec   1/1     Running   0          79s
 
 Once the file has been created it will be set to a ready state. This is useful when you are starting a pod that
 take a long time to initialise.
+
+## Next topic 
+[Deployments](3_deployments.md)
