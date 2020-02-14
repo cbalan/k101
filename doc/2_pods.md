@@ -1,4 +1,4 @@
-#Pods
+# Pods
 https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/
 -----
 
@@ -125,13 +125,13 @@ pod "myapp-pod" deleted
 ```
 
 
-#Probes
+# Probes
 https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#define-startup-probes
 
 You can configure probes to better protect your pods from failure there are three main types of probes that 
 you can define that each serve a different purpose
 
-##Liveness probe
+## Liveness probe
 As the name suggest this probe will check if you your pod is running and restart it if necessary
 
 ```yaml
@@ -191,7 +191,7 @@ livenessProbe:
 ```
 
 
-##Readiness probe
+## Readiness probe
 
 A readiness probe can be used to set conditions that your probe needs to meet before being set to ready.
 ```yaml
