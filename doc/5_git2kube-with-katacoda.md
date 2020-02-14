@@ -16,13 +16,13 @@ To install it, please execute the following on both nodes:
 
  1. Add `my.registry:31000` to the list of insecure registries. Point `my.registry` to `localhost`. 
 ```shell script
-curl https://raw.githubusercontent.com/cbalan/k101/master/examples/katacoda-local-registry/configure-local-registry.sh | bash -ex
+curl https://raw.githubusercontent.com/cbalan/k101/master/resources/katacoda-local-registry/configure-local-registry.sh | bash -ex
 
 ```
 
  2. Install local docker registry. On the `master` node, apply the docker registry manifest.
  ```shell script
-kubectl apply -f https://raw.githubusercontent.com/cbalan/k101/master/examples/katacoda-local-registry/docker-registry.yaml
+kubectl apply -f https://raw.githubusercontent.com/cbalan/k101/master/resources/katacoda-local-registry/docker-registry.yaml
 
 # Wait for the registry deployment to become ready
 kubectl wait --for=condition=available deployment/my -n registry
