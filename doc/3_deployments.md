@@ -3,8 +3,26 @@ Deployments represent a set of multiple, identical Pods with no unique identitie
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. 
 Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets.
 
+Lets create an nginx deployment. 
+
+    kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+
+Now check if the deployment was applied
+
+    kubectl get deployments
+    or
+    kubectl get deploy
+    
+
 Deployment object encapsulates ReplicaSet and Pod objects
 ![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
+       
+Now we can take a look at the deployment yaml on the cluster  The selector field defines how the Deployment finds which Pods to manage. 
+In this case, you simply select a label that is defined in the Pod template
+
+    kubectl describe deployment nginx-deployment
+    
+    kubectl edit deployments nginx-deployment
 
 # Replica Sets
 A ReplicaSet’s purpose is to maintain a stable set of replica Pods running at any given time. 
@@ -56,23 +74,6 @@ Pros:
 Cons:
 - Takes time
 
-
-Lets create an nginx deployment. 
-
-    kubectl apply -f https://k8s.io/examples/application/deployment.yaml
-
-Now check if the deployment was applied
-
-    kubectl get deployments
-    or
-    kubectl get deploy
-       
-Now we can take a look at the deployment yaml on the cluster  The selector field defines how the Deployment finds which Pods to manage. 
-In this case, you simply select a label that is defined in the Pod template
-
-    kubectl describe deployment nginx-deployment
-    
-    kubectl edit deployments nginx-deployment
    
 Lets scale up the cluster, if not using a local Kube cluster please refrain from scaling to a large number as your cluster may get sluggish. 
 
