@@ -1,5 +1,5 @@
 # Kubernetes introduction workshop
-For the next ~1h 30m we'll be looking at managing applications with **Kubernetes**.
+For the next ~1h 30m we'll be looking at managing applications with [Kubernetes](https://kubernetes.io).
 
 This is a hands-on type of workshop. No slides are available.
 
