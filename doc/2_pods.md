@@ -28,7 +28,7 @@ spec:
 
 Let create a pod:
 
-`kubectl apply -f templates/simple_pod.yaml`
+`kubectl apply -f resources/simple_pod.yaml`
 
 Something was created... let find out what 
 

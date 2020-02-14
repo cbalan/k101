@@ -75,31 +75,31 @@ To see everything
 ```shell
 master $ kubectl get all
 NAME                                    READY   STATUS    RESTARTS   AGE
-pod/intro-deployment-785df54c5c-5lbz6   1/1     Running   0          94s
-pod/intro-deployment-785df54c5c-c6vvc   1/1     Running   0          94s
-pod/intro-deployment-785df54c5c-m7wfp   1/1     Running   0          94s
+pod/hello-world-deployment-785df54c5c-5lbz6   1/1     Running   0          94s
+pod/hello-world-deployment-785df54c5c-c6vvc   1/1     Running   0          94s
+pod/hello-world-deployment-785df54c5c-m7wfp   1/1     Running   0          94s
 
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   21m
 
 NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/intro-deployment   3/3     3            3           94s
+deployment.apps/hello-world-deployment   3/3     3            3           94s
 
 NAME                                          DESIRED   CURRENT   READY   AGE
-replicaset.apps/intro-deployment-785df54c5c   3         3         3       94s
+replicaset.apps/hello-world-deployment-785df54c5c   3         3         3       94s
 ```
 
 You can can get all of a specific resource. (adding -owide give you more information)
 ```
 master $ kubectl get deployments -owide
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS   IMAGES    SELECTOR
-intro-deployment   3/3     3            3           107s   intro        busybox   app=hello-world
+hello-world-deployment   3/3     3            3           107s   intro        busybox   app=hello-world
 ```
 
 You can use describe to find out more details about something running
 ```
-master $ kubectl describe deployment intro-deployment
-Name:                   intro-deployment
+master $ kubectl describe deployment hello-world-deployment
+Name:                   hello-world-deployment
 Namespace:              default
 ....
 ```
@@ -108,19 +108,19 @@ You can view the logs of a running pod
 ```
 master $ kubectl get pods
 NAME                                READY   STATUS    RESTARTS   AGE
-intro-deployment-785df54c5c-5lbz6   1/1     Running   0          2m48s
-intro-deployment-785df54c5c-c6vvc   1/1     Running   0          2m48s
-intro-deployment-785df54c5c-m7wfp   1/1     Running   0          2m48s
+hello-world-deployment-785df54c5c-5lbz6   1/1     Running   0          2m48s
+hello-world-deployment-785df54c5c-c6vvc   1/1     Running   0          2m48s
+hello-world-deployment-785df54c5c-m7wfp   1/1     Running   0          2m48s
 
-master $ kubectl logs intro-deployment-785df54c5c-5lbz6
+master $ kubectl logs hello-world-deployment-785df54c5c-5lbz6
 Hello Kubernetes!
 ```
 
 
 Clean up 
 ```
-master $ k delete -f resources/into.yaml
-deployment.apps "nginx-deployment" deleted
+master $ k delete -f resources/intro.yaml
+deployment.apps "hello-world-deployment" deleted
 ```
 
 ## YAML
