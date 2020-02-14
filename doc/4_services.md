@@ -120,6 +120,7 @@ Inside this pod, we can talk to the ClusterIP service
 
 ```
 apk add curl
+
 curl my-clusterip-service:80
 ```
 
@@ -167,8 +168,6 @@ Let's login into a Pod to show this
 ```
 kubectl exec -it exec-pod sh
 
-#install curl
-apk add curl
 curl my-externalname-service
 ```
 
