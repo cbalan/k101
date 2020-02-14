@@ -110,7 +110,7 @@ kind load docker-image the-app:v1
 
 ## Kubernetes manifests
 
-1. Create the kubernetes manifests folder.
+1. Create the `kubernetes` manifests folder.
 ```shell script
 mkdir kubernetes
 ```
