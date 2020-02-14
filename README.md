@@ -42,7 +42,7 @@ Some of these may or may not be obvious:
 
 
 ## I'm done! What's next?
-Please refer to https://kubernetes.io/ for Kubernetes official documentation.
+This workshop only scratched the surface. Please refer to https://kubernetes.io/docs/concepts/ for advanced topics like security, storage, networking and cluster administration. 
 
 Check out how other projects are being deployed on Kubernetes via helm charts. 
 https://github.com/helm/charts/tree/master/stable/
