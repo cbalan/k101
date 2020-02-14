@@ -3,6 +3,28 @@ Deployments represent a set of multiple, identical Pods with no unique identitie
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. 
 Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets.
 
+Deployment object encapsulates ReplicaSet and Pod objects
+![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
+
+# Replica Sets
+A ReplicaSet’s purpose is to maintain a stable set of replica Pods running at any given time. 
+As such, it is often used to guarantee the availability of a specified number of identical Pods.
+
+Check the current running pods
+    
+    kubectl get pods -o wide
+ 
+Now try deleting a pod. Copy and paste one of your pods listed into the following delete command
+
+    kubectl delete pod **********
+ 
+Now Check the running pods again. What has happened?
+    
+    kubectl get pods -o wide
+
+Let's check the current deployed ReplicaSets
+
+     kubectl get rs
 
 # Deployment Features
 You describe a desired state in a Deployment, and the Deployment Controller changes the actual state to the desired state at a controlled rate. 
@@ -12,8 +34,6 @@ You can define Deployments to create new ReplicaSets, or to remove existing Depl
 - Scale up or Down
 - Pause and resume
 
-Deployment object encapsulates ReplicaSet and Pod objects
-![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
 
 # Types of Deployment Update Strategies
 
@@ -53,22 +73,6 @@ In this case, you simply select a label that is defined in the Pod template
     kubectl describe deployment nginx-deployment
     
     kubectl edit deployments nginx-deployment
-
-Check the current running pods
-    
-    kubectl get pods --all-namespaces  -o wide
- 
-Now try deleting a pod. Copy and paste one of your pods listed into the following delete command
-
-    kubectl delete pod  nginx-deployment-**********
- 
-Niw Check the running pods again. What has happened?
-    
-    kubectl get pods --all-namespaces  -o wide
-
-Let's check the current deployed ReplicaSets
-
-     kubectl get rs
    
 Lets scale up the cluster, if not using a local Kube cluster please refrain from scaling to a large number as your cluster may get sluggish. 
 
@@ -76,7 +80,7 @@ Lets scale up the cluster, if not using a local Kube cluster please refrain from
     
 Lets take a look at our pods 
 
-    kubectl get pods --all-namespaces
+    kubectl get pods -o wide
 
 Look for the number of replicas under the spec parent. Manually edit this to assign 2. Now save the file with :x or :wq 
 
@@ -100,7 +104,7 @@ Set a new nginx image to something random to try pul    l a docker image verion 
 
 Check the pods. Look for errors. What do you see?
 
-      kubectl get pods --all-namespaces
+      kubectl get pods -o wide
     
 We can check the rollout history 
 
