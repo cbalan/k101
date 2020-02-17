@@ -5,7 +5,7 @@ This is a hands-on type of workshop. No slides are available.
 
 Feel free to follow along as the presenter goes through the prepared content. 
 ```shell script
-git clone git@github.com:cbalan/k101.git
+git clone https://github.com/cbalan/k101
 ```
 
 At any moment during the workshop, if you have any questions, please interrupt the presenter. 
