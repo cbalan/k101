@@ -2,15 +2,17 @@
 For the next ~1h 30m we'll be looking at managing applications with [Kubernetes](https://kubernetes.io).
 
 This is a hands-on type of workshop. No slides are available.
+You are invited to follow along as the presenter goes through the prepared content.
 
-Feel free to follow along as the presenter goes through the prepared content. 
+Before we begin, please prepare your workstation:
+ 1. Open https://github.com/cbalan/k101 in a new tab.
+ 2. Open https://www.katacoda.com/courses/kubernetes/playground and click "Start Scenario".
+ 3. On the master node, clone this repository. All code samples paths are relative to this repository root. 
 ```shell script
-git clone https://github.com/cbalan/k101
+git clone https://github.com/cbalan/k101 && cd k101
 ```
 
-At any moment during the workshop, if you have any questions, please interrupt the presenter. 
-
-The content provided by this workshop assumes that the audience has limited experience with Kubernetes. 
+At any moment during the workshop, if you have any questions, please let the organizers know.
 
 
 ## Agenda
