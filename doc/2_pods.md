@@ -116,6 +116,8 @@ master $ k delete -f resources/simple_pod.yaml
    pod "myapp-pod" deleted
 ```
 
+Note: You need to send a SIGINT to the command "Control + C"
+
 but you can also give the pod name
 
 ```
