@@ -161,7 +161,7 @@ spec:
 
 
 ```
-kubectl apply resources/service-app/externalname-service.yaml
+kubectl apply -f resources/service-app/externalname-service.yaml
 ```
 
 Let's login into a Pod to show this
