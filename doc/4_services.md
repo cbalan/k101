@@ -19,7 +19,7 @@ master $ kubectl get services --all-namespaces
 For example, let's say you have a pod or set of pods running that are labelled MyApp. Here is a simple Service definition defined in YAML that references these pods.
 Essentially, you are saying that this service corresponds to the application running on those pods. Any query to this service, will be forwarded to these pods.
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -64,7 +64,7 @@ kubectl apply -f resources/service-app/nodeport-service.yaml
 
 So what happened?
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -112,7 +112,7 @@ Notice how the Port is not exposed externally, it just simply shows the port tha
 
 ```
 kubectl apply -f resources/service-app/pod.yaml
-kubectl exec -it resources/service-app/exec-pod sh
+kubectl exec -it exec-pod sh
 ```
 
 Inside this pod, we can talk to the ClusterIP service
@@ -149,7 +149,7 @@ like GCP, Azure & AWS
 ExternalName
 - Used to map a service to a DNS name. Lets take a quick example
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
