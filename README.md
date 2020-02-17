@@ -6,7 +6,10 @@ You are invited to follow along as the presenter goes through the prepared conte
 
 Before we begin, please prepare your workstation:
  1. Open https://github.com/cbalan/k101 in a new tab.
- 2. Open https://www.katacoda.com/courses/kubernetes/playground and click "Start Scenario".
+ 2. Open https://www.katacoda.com/courses/kubernetes/playground and click "Start Scenario". Confirm that the cluster is available using the following command: 
+```shell script
+kubectl cluster-info
+``` 
  3. On the master node, clone this repository. All code samples paths are relative to this repository root. 
 ```shell script
 git clone https://github.com/cbalan/k101 && cd k101
