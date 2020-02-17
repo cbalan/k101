@@ -97,7 +97,7 @@ Lets look at a different type of service - A ClusterIP service
 
 We can create this kind of service in the kuberenets cluster by running
 
-```kubetcl apply -f resources/service-app/clusterip-service.yaml```
+```kubectl apply -f resources/service-app/clusterip-service.yaml```
 
 Again, what have we done?
 
