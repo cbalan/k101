@@ -59,7 +59,7 @@ kubectl apply -f https://k8s.io/examples/application/deployment.yaml
 Lets create a service which can be used to access the NginX deployment
 
 ```
-kubectl apply -f nodeport-service.yaml
+kubectl apply -f resources/service-app/nodeport-service.yaml
 ```
 
 So what happened?
