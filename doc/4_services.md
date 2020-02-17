@@ -97,7 +97,7 @@ Lets look at a different type of service - A ClusterIP service
 
 We can create this kind of service in the kuberenets cluster by running
 
-```kubetcl apply -f clusterip-service.yaml```
+```kubetcl apply -f resources/service-app/clusterip-service.yaml```
 
 Again, what have we done?
 
@@ -111,8 +111,8 @@ Notice how the Port is not exposed externally, it just simply shows the port tha
 **only pods within the cluster can access this service**. Lets show this
 
 ```
-kubectl apply -f pod.yaml
-kubectl exec -it exec-pod sh
+kubectl apply -f resources/service-app/pod.yaml
+kubectl exec -it resources/service-app/exec-pod sh
 ```
 
 Inside this pod, we can talk to the ClusterIP service
@@ -161,7 +161,7 @@ spec:
 
 
 ```
-kubectl apply my-externalname-service.yaml
+kubectl apply resources/service-app/externalname-service.yaml
 ```
 
 Let's login into a Pod to show this
