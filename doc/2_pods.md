@@ -112,7 +112,7 @@ master $ k exec -it myapp-pod /bin/sh
 
 Destroying a POD
 ```
-master $ k delete -f pod.yaml
+master $ k delete -f resources/simple_pod.yaml
    pod "myapp-pod" deleted
 ```
 
