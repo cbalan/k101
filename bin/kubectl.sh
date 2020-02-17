@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 docker run --rm -it \
   --net host \
   -v $(dirname $(realpath $0))/kind-kubeconfig.yaml:/root/.kube/config \
