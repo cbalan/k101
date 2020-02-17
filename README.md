@@ -48,10 +48,10 @@ Some of these may or may not be obvious:
 This workshop is barely scratching the surface. 
 Please refer to https://kubernetes.io/docs/concepts/ for advanced topics like security, storage, networking and cluster administration. 
 
-Check out how other projects are being deployed on Kubernetes via helm charts. 
+Check out how other projects are deployed on Kubernetes via helm charts. 
 https://github.com/helm/charts/tree/master/stable/
 
-Probably check out first what is helm at https://helm.sh/ 
+Probably check out first what helm is at https://helm.sh/ 
 
 Check out https://landscape.cncf.io/
 
