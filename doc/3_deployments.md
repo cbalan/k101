@@ -1,27 +1,30 @@
 # Deployments Overview
 Deployments represent a set of multiple, identical Pods with no unique identities. 
-A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. 
-Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets.
+A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. This enables reliable zero downtime deployments.
+Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets. 
 
-Lets create an nginx deployment. 
+In a web browser tab navigate to https://k8s.io/examples/application/deployment.yaml
+
+A file was downloaded, lets open it and have a look.
+
+Lets create an nginx deployment with that yaml
 
     kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+   
 
 Now check if the deployment was applied
 
-    kubectl get deployments
-    or
-    kubectl get deploy
+    kubectl get deployments    
     
+    NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+    nginx-deployment   10/10   10           10          42m
 
 Deployment object encapsulates ReplicaSet and Pod objects
 ![Deployment Object Structure](images/deployment-object.png?raw=true "Deployment Object Structure ")
-       
-Now we can take a look at the deployment yaml on the cluster  The selector field defines how the Deployment finds which Pods to manage. 
+    
+Edit the deployment yaml on the cluster  The selector field defines how the Deployment finds which Pods to manage. 
 In this case, you simply select a label that is defined in the Pod template
 
-    kubectl describe deployment nginx-deployment
-    
     kubectl edit deployments nginx-deployment
 
 # Replica Sets
@@ -70,26 +73,48 @@ This uses the RollingUpdate strategy provided by kubernetes. Default strategy.
 Pros:
 - No downtime
 - Rollback functionality
+- Better control
 
 Cons:
 - Takes time
 
-   
+![Rollout Example](images/rollout-example.png?raw=true "Rollout Example")   
+
 Lets scale up the cluster, if not using a local Kube cluster please refrain from scaling to a large number as your cluster may get sluggish. 
 
-    kubectl scale  deployment.v1.apps/nginx-deployment --replicas=5
+    kubectl scale  deployment.v1.apps/nginx-deployment --replicas=10
     
-Lets take a look at our pods 
+Lets take a look at our pods, did they scale up?
 
     kubectl get pods -o wide
 
-Look for the number of replicas under the spec parent. Manually edit this to assign 2. Now save the file with :x or :wq 
+Take a look at the deployment description. Take note of the events
 
-Now lets do a rolling upgrade to avoid downtime. We will update the docker image version on nginx in our deployment. First lets have a look at the current image defined in the deployment. 
+    kubectl describe deployment nginx-deployment
+    
+First lets have a look at the current image defined in the deployment. 
 
     kubectl edit deployments nginx-deployment
+    
+Look for the number of replicas under the spec parent. Manually edit maxSurge and maxUnavailable to 10% 
+Now save the file with :x or :wq 
 
-Now lets set the image version using kubectl command. This could be done by editing the yaml directly either. 
+     spec:
+       progressDeadlineSeconds: 600    (How long the rollout will wait until marking the rollout status as ProgressDeadlineExceeded )
+       replicas: 10
+       revisionHistoryLimit: 10
+       selector:
+         matchLabels:
+           app: nginx
+       strategy:
+         rollingUpdate:
+           maxSurge: 10%
+           maxUnavailable: 10%
+         type: RollingUpdate
+
+Okay we have set our update configuration. Now lets trigger a rolling upgrade which will avoid downtime. 
+We will update the docker image version on nginx in our deployment. 
+We can set the image version using kubectl command. This could be done by editing the yaml directly either. 
 This action will kick off a rolling update and the Kube API will detect the desired version is not set.
 
     kubectl set image deployment nginx-deployment nginx=nginx:1.9.1
@@ -97,9 +122,25 @@ This action will kick off a rolling update and the Kube API will detect the desi
 Be quick!  lets check the status. The more replicas defined the longer the rollout will take. 
 
     kubectl rollout status deployment.v1.apps/nginx-deployment
+    
+    Waiting for deployment "nginx-deployment" rollout to finish: 4 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 4 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 4 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 4 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 4 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 5 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 5 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 5 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 5 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 6 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 6 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 6 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 6 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 7 out of 10 new replicas have been updated...
+    Waiting for deployment "nginx-deployment" rollout to finish: 7 out of 10 new replicas have been updated...
 
 Okay lets break some stuff :0 
-Set a new nginx image to something random to try pul    l a docker image verion that does not exist 
+Set a new nginx image to something random to try pull a docker image version that does not exist 
 
       kubectl set image deployment nginx-deployment nginx=nginx:1.9.10000000
 
