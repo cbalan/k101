@@ -99,6 +99,20 @@ We can create this kind of service in the kubernetes cluster by running
 
 Again, what have we done?
 
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-clusterip-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
 Lets list the services to show the difference between NodePort & ClusterIP
 
 ```
