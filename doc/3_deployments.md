@@ -97,11 +97,12 @@ First lets have a look at the current image defined in the deployment.
     kubectl edit deployments nginx-deployment
     
 Look for the number of replicas under the spec parent. Manually edit maxSurge and maxUnavailable to 10% 
+Also lets set progressDeadlineSeconds to 60
 Now save the file with :x or :wq 
 
      spec:
-       progressDeadlineSeconds: 600    (How long the rollout will wait until marking the rollout status as ProgressDeadlineExceeded )
-       replicas: 10
+       progressDeadlineSeconds: 60    (How long the rollout will wait until marking the rollout status as ProgressDeadlineExceeded )
+       replicas: 10 
        revisionHistoryLimit: 10
        selector:
          matchLabels:
@@ -147,6 +148,15 @@ Set a new nginx image to something random to try pull a docker image version tha
 Check the pods. Look for errors. What do you see?
 
       kubectl get pods -o wide
+
+Check the rollout status again 
+    
+    kubectl rollout status deployment.v1.apps/nginx-deployment
+
+We can see the rollout has stopped as it has passsed the timeout limit we set   
+    
+    Waiting for deployment "nginx-deployment" rollout to finish: 2 out of 10 new replicas have been updated...
+    error: deployment "nginx-deployment" exceeded its progress deadline
     
 We can check the rollout history 
 
