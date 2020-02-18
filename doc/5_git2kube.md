@@ -10,6 +10,6 @@ Next, in order to show case an end to end process, we'll create, package, instal
 
 For a browser based tutorial, please use the following [Katacoda powered tutorial](5_git2kube-with-katacoda.md).
 
-For a local workstation based tutorial, please use the following Docker and [KIND powered tutorial](5_git2kube-with-kind.md). 
+For a local workstation based tutorial, please use the following [Docker and KIND powered tutorial](5_git2kube-with-kind.md). 
 
 
