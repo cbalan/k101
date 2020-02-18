@@ -48,8 +48,6 @@ What fo these fields mean exactly?
 
 # DEMO!!
 
-Go to https://github.com/cbalan/k101/tree/master/resources/service-app
-
 If you haven't already, create the deployment from the previous section
 
 ```
