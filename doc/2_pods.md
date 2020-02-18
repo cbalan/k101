@@ -1,6 +1,6 @@
 # Pods
 https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/
------
+
 
 A pod is the most basic unit in the kubernetes. You provide the API with a yaml template definition 
 

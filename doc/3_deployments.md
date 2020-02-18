@@ -1,4 +1,6 @@
 # Deployments Overview
+https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+
 Deployments represent a set of multiple, identical Pods with no unique identities. 
 A Deployment runs multiple replicas of your application and automatically replaces any instances that fail or become unresponsive. This enables reliable zero downtime deployments.
 Deployments are managed by the Kubernetes Deployment controller. A Deployment provides declarative updates for Pods and ReplicaSets. 
