@@ -6,7 +6,7 @@ This is a hands-on type of workshop. No slides are available.
 You are invited to follow along as the presenter goes through the prepared content.
 
 Before we begin, please prepare your workstation:
- 1. Open https://github.com/cbalan/k101 in a new tab.
+ 1. Open https://github.com/cbalan/k101 
  2. Open https://www.katacoda.com/courses/kubernetes/playground and click "Start Scenario". 
  3. On the master node, clone this repository. All code samples paths are relative to this repository root. 
 ```shell script
