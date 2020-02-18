@@ -11,10 +11,9 @@ you can send requests to a service which will forward it on to an available Pod.
 To view all the services running in your Kubernetes cluster you can run
 
 ```
-master $ kubectl get services --all-namespaces
+master $ kubectl get services
     NAMESPACE     NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
     default       kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP                  8m18s
-    kube-system   kube-dns     ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP,9153/TCP   8m16s
 ```
 
 For example, let's say you have a pod or set of pods running that are labelled MyApp. Here is a simple Service definition defined in YAML that references these pods.
@@ -96,7 +95,7 @@ curl 127.0.0.1:32333
 
 Lets look at a different type of service - A ClusterIP service
 
-We can create this kind of service in the kuberenets cluster by running
+We can create this kind of service in the kubernetes cluster by running
 
 ```kubectl apply -f resources/service-app/clusterip-service.yaml```
 
@@ -148,7 +147,7 @@ LoadBalancer
 like GCP, Azure & AWS
 
 ExternalName
-- Used to map a service to a DNS name. Lets take a quick example
+- Used to map a service to a DNS name. This could be used for example to control the entrypoint to a Database. Lets take a look at a quick example:
 
 ```yaml
 apiVersion: v1
