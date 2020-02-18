@@ -99,7 +99,7 @@ We can create this kind of service in the kubernetes cluster by running
 
 Again, what have we done?
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
