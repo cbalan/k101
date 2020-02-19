@@ -1,7 +1,4 @@
 # Kubernetes introduction workshop
-For the next ~1h 30m we'll be looking at managing applications with [Kubernetes](https://kubernetes.io).
-
-This is a hands-on type of workshop. You are invited to follow along as the presenter goes through the prepared content.
 
 Before we begin, please prepare your workstation:
  1. Open https://github.com/cbalan/k101 
