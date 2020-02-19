@@ -72,6 +72,7 @@ Or build a Kubernetes cluster from scratch: https://github.com/kelseyhightower/k
 ## Resources
 - https://12factor.net/
 - https://kubernetes.io/docs/tutorials/
+- https://github.com/microservices-demo/microservices-demo
 - https://www.katacoda.com/courses/kubernetes
 - https://www.oreilly.com/library/view/kubernetes-up-and/9781491935668/
 - https://www.oreilly.com/library/view/kubernetes-patterns/9781492050278/
